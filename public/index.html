@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>SanoLicores — Gestión profesional para licorerías</title>
+  <meta name="description" content="SanoLicores: sistema para licorerías de Latinoamérica. Venta por unidad, six-pack o caja con lector de código de barras, fría o al tiempo, al detal o al mayor; envases retornables con depósito y préstamo; combos; fiado con límite; clientes que dejaron de venir por WhatsApp; puntos; catálogo para pedidos en línea con delivery; compras a distribuidoras y cuentas por pagar; roturas y vencimientos; caja en dos monedas con tasa BCV y reportes de ganancia. Funciona en el teléfono y en la computadora, también sin internet.">
+  <meta name="theme-color" content="#1a0b10">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="SanoLicores">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
+  <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon.png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/app.css">
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('sl_theme');
+        if (!t) t = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <div id="boot" class="boot">
+    <div class="boot-inner">
+      <img src="/assets/icon-192.png" alt="SanoLicores">
+      <div class="spinner"></div>
+    </div>
+  </div>
+  <div id="root"></div>
+  <div id="modals"></div>
+  <div id="toasts" class="toasts"></div>
+  <noscript>SanoLicores necesita JavaScript habilitado.</noscript>
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>
