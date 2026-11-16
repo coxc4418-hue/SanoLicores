@@ -360,7 +360,9 @@ for (const sc of SCENES.filter((s) => !process.env.UNTIL || s.id <= process.env.
   if (sc.after === 'country') { await app.waitForSelector('.country-grid', { timeout: 90000 }); await sleep(900); }
   if (sc.after === 'demo') {
     await app.waitForSelector('.sb-nav', { timeout: 90000 });
-    await app.waitForSelector('.tour-tip', { timeout: 20000 }).catch(() => {});
+    // la demo termina de cargar sus datos y recién ahí abre el recorrido
+    await app.waitForFunction(() => !document.getElementById('boot'), { timeout: 180000 }).catch(() => {});
+    await app.waitForSelector('.tour-tip', { timeout: 30000 }).catch(() => {});
     await app.evaluate(async () => (await import('/js/tour.js')).stopTour());
     await sleep(6000);
     await app.evaluate(async () => { (await import('/js/tour.js')).stopTour(); document.querySelectorAll('.tour').forEach((x) => x.remove()); document.querySelectorAll('.toast').forEach((t) => t.remove()); });
