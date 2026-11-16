@@ -49,7 +49,7 @@ export function mount(el, { navigate, params = {} }) {
     const need = needOf(i, p);
     const have = p && isCombo(p) ? comboStock(p) : st;
     const ok = p && (p.trackStock === false && !isCombo(p) || have >= need);
-    return `<div class="oline"><span class="oline-q">${i.q}×</span><div class="grow" style="min-width:0"><b class="ellipsis">${esc(i.n || p?.name || 'Producto')}</b> <span class="t-sub">${i.k === 'caja' && p && !isCombo(p) && upb(p) > 1 ? 'caja' : ''}</span><div class="t-sub">${p ? (ok ? `<span class="text-success">${icon('check')} hay ${isCombo(p) ? have + ' combo(s)' : stockText(p)}</span>` : `<span class="text-danger">${icon('alert')} ${have > 0 ? `solo ${isCombo(p) ? have + ' combo(s)' : stockText(p)}` : 'agotado'}</span>`) : '<span class="text-danger">ya no está en el inventario</span>'}</div></div><b class="num">${usd((Number(i.p) || 0) * (Number(i.q) || 1))}</b></div>`;
+    return `<div class="oline"><span class="oline-q">${i.q}×</span><div class="grow" style="min-width:0"><b class="oline-n">${esc(i.n || p?.name || 'Producto')}</b><span class="t-sub">${i.k === 'caja' && p && !isCombo(p) && upb(p) > 1 ? 'caja' : ''}</span><div class="t-sub">${p ? (ok ? `<span class="text-success">${icon('check')} hay ${isCombo(p) ? have + ' combo(s)' : stockText(p)}</span>` : `<span class="text-danger">${icon('alert')} ${have > 0 ? `solo ${isCombo(p) ? have + ' combo(s)' : stockText(p)}` : 'agotado'}</span>`) : '<span class="text-danger">ya no está en el inventario</span>'}</div></div><b class="num">${usd((Number(i.p) || 0) * (Number(i.q) || 1))}</b></div>`;
   }
 
   function card(o) {
@@ -62,7 +62,7 @@ export function mount(el, { navigate, params = {} }) {
           <div class="t-sub">${esc(o.number || '')} · ${fmtAgo(o.createdAt)} · ${esc(o.phone || '')}${cl ? ` · <button class="linkish" data-cl="${cl.id}">ver cliente</button>` : ''}</div>
           ${o.mode === 'delivery' && o.address ? `<div class="small mt-xs">${icon('pin')} ${esc(o.address)}</div>` : ''}
           ${o.note ? `<div class="small mt-xs muted">“${esc(o.note)}”</div>` : ''}</div>
-        <div class="r"><b style="font-size:18px">${usd(o.total || 0)}</b>${bs(o.total || 0) ? `<div class="t-sub">${bs(o.total)}</div>` : ''}${o.payMethod ? `<div class="t-sub">paga con ${esc(o.payMethod)}</div>` : ''}</div>
+        <div class="r order-sum"><b style="font-size:18px">${usd(o.total || 0)}</b>${bs(o.total || 0) ? `<div class="t-sub">${bs(o.total)}</div>` : ''}${o.payMethod ? `<div class="t-sub">paga con ${esc(o.payMethod)}</div>` : ''}</div>
       </div>
       <div class="olines mt">${(o.items || []).map(itemRow).join('')}</div>
       ${missing && !['entregada', 'cancelada'].includes(st) ? `<div class="small text-danger mt-xs">${icon('alert')} Falta inventario: avísale y ofrécele otra marca.</div>` : ''}

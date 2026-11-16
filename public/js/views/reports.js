@@ -137,7 +137,7 @@ export function mount(el) {
         <div class="card kpi"><div class="kpi-top"><span class="kpi-label">Clientes atendidos</span><span class="kpi-icon tone-info">${icon('users')}</span></div><div class="kpi-value">${c.clients.size}</div><div class="kpi-sub">${c.ventas.length ? num(c.ventas.filter((s) => s.memberId).length / c.ventas.length * 100, 0) : 0}% de ventas con cliente</div></div>
         <div class="card kpi"><div class="kpi-top"><span class="kpi-label">Envases recibidos</span><span class="kpi-icon tone-violet">${icon('rotate')}</span></div><div class="kpi-value">${c.empIn}</div><div class="kpi-sub">${c.empOut} entregados al proveedor${c.empLent ? ` · ${c.empLent > 0 ? '+' : ''}${c.empLent} prestados` : ''}</div></div>
       </div>
-      <div class="kpis kpis-sm">
+      <div class="kpis kpis-sm kpis-4">
         <div class="card kpi"><div class="kpi-top"><span class="kpi-label">Cobrado</span></div><div class="kpi-value">${usd(c.cash)}</div></div>
         <div class="card kpi"><div class="kpi-top"><span class="kpi-label">Gastos</span></div><div class="kpi-value">${usd(c.expenses)}</div></div>
         <div class="card kpi"><div class="kpi-top"><span class="kpi-label">Roturas, mermas y vencidos</span></div><div class="kpi-value ${c.loss > 0 ? 'text-danger' : ''}">${usd(c.loss)}</div><div class="kpi-sub">al costo</div></div>
@@ -148,7 +148,7 @@ export function mount(el) {
         <div class="card kpi"><div class="kpi-top"><span class="kpi-label">Puntos canjeados</span></div><div class="kpi-value">${usd(c.pointsDisc)}</div></div>
       </div>
       <div class="card" style="margin-bottom:16px"><div class="card-head"><div class="card-title">${icon('dollar')} Ventas por día</div></div>
-        ${showDays ? `<div class="bars">${c.perDay.map(([k, v]) => `<div class="bar" title="${fmtDate(k)}: ${usd(v)}"><i style="height:${v / maxI * 100}%"></i><span>${c.perDay.length > 14 ? k.slice(8) : shortDate(k)}</span></div>`).join('')}</div>` : `<p class="muted small">Total del período: ${usd(c.billed)}</p>`}</div>
+        ${showDays ? `<div class="bars${c.perDay.length > 14 ? ' dense' : ''}">${c.perDay.map(([k, v]) => `<div class="bar" title="${fmtDate(k)}: ${usd(v)}"><i style="height:calc((100% - 18px) * ${(v / maxI).toFixed(4)})"></i><span>${c.perDay.length > 14 ? k.slice(8) : shortDate(k)}</span></div>`).join('')}</div>` : `<p class="muted small">Total del período: ${usd(c.billed)}</p>`}</div>
       <div class="grid-2" style="margin-bottom:16px">
         <div class="card"><div class="card-title" style="margin-bottom:10px">${icon('trophy')} Productos más vendidos</div>${hbars(top(c.prodTotal, 10), (v) => usd(v))}</div>
         <div class="card"><div class="card-title" style="margin-bottom:10px">${icon('trend')} Productos que más ganancia dejan</div>${hbars(top(c.prodProfit, 10), (v) => usd(v))}</div>

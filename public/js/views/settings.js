@@ -9,7 +9,7 @@ import { isStandalone, bindInstallButtons } from '../install.js';
 import { CATEGORIES } from '../licor.js';
 import { slugify, publishShop, resetPublished, shopUrl } from '../ops.js';
 
-const SECTIONS = { negocio: 'Licorería', moneda: 'Moneda y precios', envases: 'Envases', vendedores: 'Vendedores', pedidos: 'Pedidos en línea', fidelidad: 'Fidelidad y alertas', recibos: 'Facturas', seguridad: 'Seguridad', apps: 'Instalar y respaldo' };
+const SECTIONS = { negocio: 'Licorería', moneda: 'Moneda', envases: 'Envases', vendedores: 'Vendedores', pedidos: 'Pedidos', fidelidad: 'Fidelidad', recibos: 'Facturas', seguridad: 'Seguridad', apps: 'Instalar y respaldo' };
 const sw = (name, on, title, sub) => `<label class="check box box-white"><span class="switch"><input type="checkbox" name="${name}" ${on ? 'checked' : ''}><span></span></span><span><b>${title}</b><br><small class="muted">${sub}</small></span></label>`;
 const save = (t) => `<div class="row" style="justify-content:flex-end"><button class="btn btn-primary">${icon('check')} ${t || 'Guardar'}</button></div>`;
 

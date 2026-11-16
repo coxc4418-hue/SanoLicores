@@ -77,14 +77,14 @@ export function applyLocale(code, cur = null) {
 }
 applyLocale('VE');
 /** Monto en la moneda de trabajo: "$ 120.000" (COP), "S/ 85,00" (PEN)… */
-export const usd = (n) => `${LOC.sym} ${num(n, LOC.dec)}`;
+export const usd = (n) => `${LOC.sym} ${num(n, LOC.dec)}`;
 // ---------- Segunda moneda (opcional): p. ej. precios en $ y su equivalente en Bs a la tasa del día ----------
 let FX = null;
 /** fx: { enabled, sym, name, rate } — rate = cuánto vale 1 de la moneda de trabajo en la segunda moneda */
 export function setFx(fx) { FX = fx && fx.enabled && Number(fx.rate) > 0 ? { sym: fx.sym || 'Bs', name: fx.name || '', rate: Number(fx.rate) } : null; }
 export const fx = () => FX;
 /** Equivalente en la segunda moneda ("Bs 1.234,50") o '' si no está activa */
-export const bs = (n) => (FX ? `${FX.sym} ${num((Number(n) || 0) * FX.rate, 2)}` : '');
+export const bs = (n) => (FX ? `${FX.sym} ${num((Number(n) || 0) * FX.rate, 2)}` : '');
 export const money = usd;
 export function qtyFmt(n) {
   const v = Number(n) || 0;

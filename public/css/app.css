@@ -1708,7 +1708,9 @@ button.style-card { display: flex; gap: 8px; align-items: center; cursor: pointe
 
 /* Cobrar */
 .cart-client { display: flex; gap: 8px; align-items: center; }
-.cart-ctx { display: flex; flex-direction: column; gap: 6px; }
+.cart-ctx { display: flex; flex-direction: column; align-items: stretch; gap: 6px; }
+.cart-ctx > .row, .cart-ctx > .cart-client { width: 100%; }
+.cart-ctx .btn-icon { flex: 0 0 auto; justify-content: center; }
 .cart-extra { display: flex; flex-direction: column; gap: 8px; margin-bottom: 8px; }
 .tip-row { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
 .tip-in { display: inline-flex; align-items: center; gap: 4px; }
@@ -2116,3 +2118,31 @@ button.style-card { display: flex; gap: 8px; align-items: center; cursor: pointe
   .shop-item { flex-wrap: wrap; }
   .shop-buy { flex: 1 1 100%; flex-direction: row; justify-content: flex-end; flex-wrap: wrap; }
 }
+
+/* Montos: la moneda y la cifra siempre en la misma línea */
+td.num, th.num { white-space: nowrap; }
+
+/* Inicio: aviso de licencia como tarjeta y los 6 indicadores parejos */
+.lic-banner { background: var(--warning-soft); color: var(--warning); border: 1px solid color-mix(in srgb, var(--warning) 25%, transparent); border-radius: var(--radius); margin-bottom: 14px; }
+@media (min-width: 900px) { #d-kpis { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 1500px) { #d-kpis { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+
+/* Gráfico de ventas por día: la columna no lleva el fondo de las barras horizontales */
+.bars .bar { background: none; border-radius: 0; min-width: 0; }
+.kpis-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (min-width: 900px) { .kpis-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+/* Pedidos: nombre completo (hasta 2 líneas), precio y total sin partirse */
+.oline-n { display: block; line-height: 1.3; overflow-wrap: anywhere; }
+.oline > b.num { flex: none; white-space: nowrap; }
+.order-sum { flex: none; max-width: 150px; }
+.order-sum > b { white-space: nowrap; }
+.bars .bar i { flex-shrink: 0; }
+
+/* Teléfono: la tasa compacta para que se lea el nombre de la app */
+@media (max-width: 440px) { .topbar .rate-cur, .topbar .rate-bcv, .topbar [data-install] { display: none; } .topbar { gap: 6px; } }
+
+/* Ficha en teléfono: avatar chico arriba, el nombre con todo el ancho */
+@media (max-width: 600px) { .mhead { align-items: flex-start; gap: 12px; } .mhead .avatar-xl { width: 48px; height: 48px; font-size: 17px; border-radius: 14px; } .mhead-name { font-size: 20px; } }
+.emp-value { flex-wrap: wrap; gap: 12px; }
+@media (max-width: 600px) { .emp-value { flex-direction: column; align-items: stretch; } }
+@media (max-width: 600px) { .bars { gap: 3px; } .bars.dense .bar span { visibility: hidden; } .bars.dense .bar:nth-child(5n+1) span { visibility: visible; } }

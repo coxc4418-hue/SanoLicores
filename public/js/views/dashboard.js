@@ -40,7 +40,7 @@ export function mount(el, { navigate }) {
     const fresh = store.newOrders;
     const lic = store.licenseDays;
     $('#d-ord').innerHTML = (list.length ? `<div class="banner req-banner"><span>${icon('bag')} <b>${list.length} pedido(s) en línea</b> por atender${fresh.length ? ` · ${fresh.length} nuevo(s)` : ''}: ${list.slice(0, 3).map((o) => `${esc((o.name || '').split(' ')[0])} (${o.items?.length || 0})`).join(', ')}</span><button class="btn btn-sm btn-primary" id="d-ord-go">Atender</button></div>` : '')
-      + (lic != null && lic <= 30 ? `<div class="banner offline-banner"><span>${icon('shield')} ${lic < 0 ? `La licencia de expendio de licores <b>venció</b> el ${fmtDate(store.settings.licenseExpires)}.` : `La licencia de expendio de licores vence ${lic === 0 ? '<b>hoy</b>' : `en <b>${lic} día(s)</b>`} (${fmtDate(store.settings.licenseExpires)}).`} Renuévala a tiempo.</span><button class="btn btn-sm btn-secondary" id="d-lic">Ver</button></div>` : '');
+      + (lic != null && lic <= 30 ? `<div class="banner lic-banner"><span>${icon('shield')} ${lic < 0 ? `La licencia de expendio de licores <b>venció</b> el ${fmtDate(store.settings.licenseExpires)}.` : `La licencia de expendio de licores vence ${lic === 0 ? '<b>hoy</b>' : `en <b>${lic} día(s)</b>`} (${fmtDate(store.settings.licenseExpires)}).`} Renuévala a tiempo.</span><button class="btn btn-sm btn-secondary" id="d-lic">Ver</button></div>` : '');
     $('#d-ord-go')?.addEventListener('click', () => navigate('pedidos'));
     $('#d-lic')?.addEventListener('click', () => navigate('ajustes', { tab: 'negocio' }));
   }

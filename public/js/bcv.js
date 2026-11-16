@@ -70,7 +70,7 @@ export function startBcv() {
 export function rateChip() {
   const fx = fxNow();
   const on = fx.enabled && Number(fx.rate) > 0;
-  return `${flagImg(loc().code)} ${esc(loc().cur)}${on ? ` <span class="rate-fx">${isVE() ? 'BCV ' : ''}${esc(fx.sym || 'Bs')} ${num(fx.rate, 2)}</span>` : ''}`;
+  return `${flagImg(loc().code)} <span class="rate-cur">${esc(loc().cur)}</span>${on ? ` <span class="rate-fx">${isVE() ? '<span class="rate-bcv">BCV </span>' : ''}${esc(fx.sym || 'Bs')} ${num(fx.rate, 2)}</span>` : ''}`;
 }
 
 const swHTML = (name, on, title, sub) => `<label class="check box box-white"><span class="switch"><input type="checkbox" name="${name}" ${on ? 'checked' : ''}><span></span></span><span><b>${title}</b><br><small class="muted">${sub}</small></span></label>`;
