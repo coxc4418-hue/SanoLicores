@@ -78,12 +78,13 @@ const SCENES = [
       await v.point('#e-tabs [data-t="prestados"]'); await sleep(1500);
       await v.hl('#e-body', 3800);
       await v.point('#e-tabs [data-t="movimientos"]'); await sleep(2000);
+      await v.point('#e-tabs [data-t="deposito"]'); await sleep(1200);
       await v.hl('#e-sup', 2200);
     } },
   { id: '10-inventario', text: 'En Inventario tienes cada producto en cajas y unidades, con sus lotes y vencimientos: sale primero lo que vence antes. En Por reponer, lo que bajó del mínimo. Registras las roturas y las cortesías, y haces el conteo físico protegido con tu PIN.',
     act: async (v) => {
-      await v.nav('inventario'); await sleep(1100);
-      await v.hl('#i-body', 3600);
+      await v.nav('inventario'); await v.page.waitForSelector('#i-body', { timeout: 8000 }).catch(() => {}); await sleep(600);
+      await v.hl('#i-body', 3000);
       await v.point('#i-tabs [data-t="bajo"]'); await sleep(2400);
       await v.point('#i-tabs [data-t="vencimientos"]'); await sleep(2400);
       await v.point('#i-tabs [data-t="movimientos"]'); await sleep(2400);
