@@ -1,5 +1,5 @@
 // SanoLicores — Service Worker (PWA, funcionamiento sin conexión)
-const VERSION = 'sanolicores-v1.0.3';
+const VERSION = 'sanolicores-v1.0.4';
 const SDK = 'https://www.gstatic.com/firebasejs/10.14.1/';
 const VIEWS = ['admin', 'card', 'cash', 'clients', 'dashboard', 'inventory', 'invoices', 'kiosk', 'loyalty', 'orders', 'pos', 'purchases', 'reports', 'empties', 'search', 'settings', 'shop'];
 const SHELL = [
